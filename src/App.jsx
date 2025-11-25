@@ -18,4 +18,16 @@ function getApiKey() {
   } catch {}
   return '';
 }
+const API_KEY = getApiKey();
+const BASE_WEATHER = "https://api.openweathermap.org/data/2.5/weather";
+const BASE_FORECAST = "https://api.openweathermap.org/data/2.5/forecast";
+
+function aggregateDailyForecast(list) {
+  const days = {};
+  list.forEach(item => {
+    const date = new Date(item.dt * 1000);
+    const key = date.toISOString().slice(0,10);
+    if (!days[key]) days[key] = [];
+    days[key].push(item);
+  });
 
