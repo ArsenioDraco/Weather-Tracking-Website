@@ -30,4 +30,27 @@ function aggregateDailyForecast(list) {
     if (!days[key]) days[key] = [];
     days[key].push(item);
   });
+return Object.keys(days).slice(0,5).map(key => {
+    const arr = days[key];
+    let chosen = arr.reduce((best, cur) => {
+      const curHour = new Date(cur.dt * 1000).getHours();
+      const bestHour = new Date(best.dt * 1000).getHours();
+      return Math.abs(curHour - 12) < Math.abs(bestHour - 12) ? cur : best;
+    }, arr[0]);
+    return {
+      date: key,
+      temp: chosen.main.temp,
+      icon: chosen.weather[0].icon,
+      desc: chosen.weather[0].description
+    };
+  });
+}
+
+const sampleCurrent = {
+  name: "Berlin",
+  sys: {country: "DE"},
+  main: {temp: 19.5, humidity: 72},
+  weather: [{icon: "04d", description: "broken clouds"}],
+  wind: {speed: 3.4}
+};
 
