@@ -53,4 +53,22 @@ const sampleCurrent = {
   weather: [{icon: "04d", description: "broken clouds"}],
   wind: {speed: 3.4}
 };
+const sampleForecast = {
+  list: [
+    {dt: Math.floor(Date.now()/1000), main: {temp: 19}, weather:[{icon:"04d",description:"cloudy"}]},
+    {dt: Math.floor(Date.now()/1000) + 86400, main: {temp: 21}, weather:[{icon:"01d",description:"clear sky"}]},
+    {dt: Math.floor(Date.now()/1000) + 86400*2, main: {temp: 18}, weather:[{icon:"10d",description:"light rain"}]}
+  ]
+};
+
+export default function App() {
+  const [query, setQuery] = useState("");
+  const [current, setCurrent] = useState(null);
+  const [forecast, setForecast] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [tracked, setTracked] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("wt_tracked")) || []; } catch {return []}
+  });
+  const inputRef = useRef(null);
 
