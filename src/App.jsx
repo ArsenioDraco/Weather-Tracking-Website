@@ -114,4 +114,18 @@ async function fetchWeatherByCity(city) {
       if (!wc.ok) throw new Error(`City not found: ${city}`);
       const cur = await wc.json();
       const wf = await fetch(`${BASE_FORECAST}?q=${encodeURIComponent(city)}&units=metric&appid=${API_KEY}`);
+ if (!wf.ok) throw new Error();
+      const f = await wf.json();
+      setCurrent(cur);
+      setForecast(aggregateDailyForecast(f.list));
+    } catch (e) {
+      setError(e.message);
+      if (!API_KEY) {
+        setCurrent(sampleCurrent);
+        setForecast(aggregateDailyForecast(sampleForecast.list));
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
 
