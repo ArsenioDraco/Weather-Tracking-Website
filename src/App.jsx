@@ -81,4 +81,27 @@ useEffect(() => {
       setForecast(aggregateDailyForecast(sampleForecast.list));
     }
   }, []);
+async function fetchWeatherByCoords(lat, lon) {
+    setError("");
+    setLoading(true);
+    try {
+      if (!API_KEY) throw new Error("No API key configured. Showing sample data.");
+      const wc = await fetch(`${BASE_WEATHER}?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`);
+      if (!wc.ok) throw new Error();
+      const cur = await wc.json();
+      const wf = await fetch(`${BASE_FORECAST}?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`);
+      if (!wf.ok) throw new Error();
+      const f = await wf.json();
+      setCurrent(cur);
+      setForecast(aggregateDailyForecast(f.list));
+    } catch (e) {
+      setError(e.message);
+      if (!API_KEY) {
+        setCurrent(sampleCurrent);
+        setForecast(aggregateDailyForecast(sampleForecast.list));
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
 
