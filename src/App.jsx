@@ -128,4 +128,19 @@ async function fetchWeatherByCity(city) {
       setLoading(false);
     }
   }
+function handleAddTracked() {
+    if (!current) return;
+    const id = `${current.name},${current.sys?.country || ""}`;
+    if (tracked.find(t => t.id === id)) return;
+    const item = {id, name: current.name, country: current.sys?.country};
+    setTracked([item, ...tracked]);
+  }
+
+  function handleRemoveTracked(id) {
+    setTracked(tracked.filter(t => t.id !== id));
+  }
+
+  function handleUseTracked(item) {
+    fetchWeatherByCity(item.name);
+  }
 
