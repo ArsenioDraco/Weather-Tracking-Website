@@ -71,4 +71,14 @@ export default function App() {
     try { return JSON.parse(localStorage.getItem("wt_tracked")) || []; } catch {return []}
   });
   const inputRef = useRef(null);
+useEffect(() => {
+    localStorage.setItem("wt_tracked", JSON.stringify(tracked));
+  }, [tracked]);
+
+  useEffect(() => {
+    if (!API_KEY && !current) {
+      setCurrent(sampleCurrent);
+      setForecast(aggregateDailyForecast(sampleForecast.list));
+    }
+  }, []);
 
