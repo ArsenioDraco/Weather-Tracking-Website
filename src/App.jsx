@@ -104,4 +104,14 @@ async function fetchWeatherByCoords(lat, lon) {
       setLoading(false);
     }
   }
+async function fetchWeatherByCity(city) {
+    if (!city) return;
+    setError("");
+    setLoading(true);
+    try {
+      if (!API_KEY) throw new Error("No API key configured. Showing sample data.");
+      const wc = await fetch(`${BASE_WEATHER}?q=${encodeURIComponent(city)}&units=metric&appid=${API_KEY}`);
+      if (!wc.ok) throw new Error(`City not found: ${city}`);
+      const cur = await wc.json();
+      const wf = await fetch(`${BASE_FORECAST}?q=${encodeURIComponent(city)}&units=metric&appid=${API_KEY}`);
 
