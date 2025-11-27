@@ -174,12 +174,36 @@ return (
           <form onSubmit={onSubmitSearch} className="md:col-span-2 bg-white p-4 rounded-2xl shadow-sm">
             <div className="flex gap-3 items-center">
 <input
-  ref
-  value
-  onchange
-  placeholder
-  classname
-  aria-label
+  ref={inputRef}
+  value={query}
+  onChange={e=> setQuery(e.target.value)}
+  placeholder="Search city — e.g. Paris, Tokyo"
+  className="Flex-1 p-3 rounded-lg border"
+  aria-label="City search"
+  />
+    <button type="submit" className="px-4 py-3 rounded-lg bg-slate-800 text-white font-semibold">Search</button>
+              <button type="button" onClick={handleGeolocate} className="px-4 py-3 rounded-lg border font-medium">Use my location</button>
+            </div>
+            <div className="mt-3 text-sm text-rose-600">{error}</div>
+            <div className="mt-4 flex gap-3 flex-wrap">
+              <button type="button" onClick={() => fetchWeatherByCity('New York')} className="px-3 py-1 rounded-md border">New York</button>
+              <button type="button" onClick={() => fetchWeatherByCity('London')} className="px-3 py-1 rounded-md border">London</button>
+              <button type="button" onClick={() => fetchWeatherByCity('Berlin')} className="px-3 py-1 rounded-md border">Berlin</button>
+              <button type="button" onClick={() => fetchWeatherByCity('Tokyo')} className="px-3 py-1 rounded-md border">Tokyo</button>
+            </div>
+          </form>
+
+          <aside className="bg-white p-4 rounded-2xl shadow-sm">
+            <h2 className="text-2xl font-bold mb-3">Tracked Cities</h2>
+            <div className="flex flex-col gap-2">
+              {tracked.length === 0 && <div className="text-sm text-slate-500">No tracked cities yet.</div>}
+              {tracked.map(item => (
+                <div key={item.id} className="flex items-center justify-between p-2 rounded-md border">
+                  <div className="cursor-pointer" onClick={() => handleUseTracked(item)}>
+                    <div className="font-semibold">{item.name}</div>
+                    <div className="text-xs text-slate-500">{item.country}</div>
+                  </div>
+          
   
 
 
