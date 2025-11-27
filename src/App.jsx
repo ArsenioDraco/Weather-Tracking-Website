@@ -162,7 +162,25 @@ function handleAddTracked() {
     setQuery("");
     inputRef.current?.blur();
   }
+return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white p-6 flex flex-col items-center">
+      <div className="w-full max-w-4xl">
+        <header className="mb-8">
+          <h1 className="text-5xl font-extrabold leading-tight mb-2">WeatherTracker</h1>
+          <p className="text-lg text-slate-600">Track current weather and short-term forecasts. Save cities you care about.</p>
+        </header>
 
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <form onSubmit={onSubmitSearch} className="md:col-span-2 bg-white p-4 rounded-2xl shadow-sm">
+            <div className="flex gap-3 items-center">
+<input
+  ref
+  value
+  onchange
+  placeholder
+  classname
+  aria-label
+  
 
 
 
