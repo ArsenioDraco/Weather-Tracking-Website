@@ -203,7 +203,17 @@ return (
                     <div className="font-semibold">{item.name}</div>
                     <div className="text-xs text-slate-500">{item.country}</div>
                   </div>
-          
+          <div className="flex gap-2">
+                    <button onClick={() => handleUseTracked(item)} className="px-2 py-1 rounded-md border text-sm">Open</button>
+                    <button onClick={() => handleRemoveTracked(item.id)} className="px-2 py-1 rounded-md border text-sm">Remove</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </aside>
+        </section>
+
+
   
 
 
