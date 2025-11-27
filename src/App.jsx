@@ -154,3 +154,15 @@ function handleAddTracked() {
     }, {timeout: 10000});
   }
 
+
+  function onSubmitSearch(e) {
+    e.preventDefault();
+    if (!query.trim()) return;
+    fetchWeatherByCity(query.trim());
+    setQuery("");
+    inputRef.current?.blur();
+  }
+
+
+
+
