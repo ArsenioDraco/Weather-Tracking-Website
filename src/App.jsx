@@ -143,4 +143,14 @@ function handleAddTracked() {
   function handleUseTracked(item) {
     fetchWeatherByCity(item.name);
   }
+ function handleGeolocate() {
+    if (!navigator.geolocation) { setError("Geolocation not supported"); return; }
+    setLoading(true);
+    navigator.geolocation.getCurrentPosition(pos => {
+      fetchWeatherByCoords(pos.coords.latitude, pos.coords.longitude);
+    }, err => {
+      setLoading(false);
+      setError(err.message);
+    }, {timeout: 10000});
+  }
 
