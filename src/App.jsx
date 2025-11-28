@@ -238,6 +238,20 @@ return (
                 </div>
               </div>
             </div>
+<div className="bg-white p-6 rounded-2xl shadow-sm">
+              <h3 className="text-2xl font-bold mb-4">Short Forecast</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
+                {forecast.length === 0 && <div className="text-sm text-slate-500 col-span-full">No forecast available.</div>}
+                {forecast.map((f, i) => (
+                  <div key={i} className="p-3 rounded-lg border text-center">
+                    <div className="text-sm font-semibold">{new Date(f.date).toLocaleDateString(undefined, {weekday:'short', month:'short', day:'numeric'})}</div>
+                    <img src={`https://openweathermap.org/img/wn/${f.icon}@2x.png`} alt="ficon" className="mx-auto" />
+                    <div className="text-lg font-bold">{Math.round(f.temp)}°</div>
+                    <div className="text-xs capitalize">{f.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
 
   
