@@ -212,6 +212,19 @@ return (
             </div>
           </aside>
         </section>
+<main>
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-2xl shadow-sm">
+              <div className="flex items-start gap-6">
+                <div>
+                  <div className="text-4xl font-bold">{current ? `${Math.round(current.main.temp)}°C` : "--"}</div>
+                  <div className="text-sm text-slate-600">{current ? `${current.name}${current.sys?.country ? `, ${current.sys.country}` : ''}` : 'No city selected'}</div>
+                </div>
+                <div className="ml-auto text-right">
+                  <div className="text-sm text-slate-500">Humidity: {current ? `${current.main.humidity}%` : '--'}</div>
+                  <div className="text-sm text-slate-500">Wind: {current ? `${current.wind?.speed ?? '--'} m/s` : '--'}</div>
+                </div>
+              </div>
 
 
   
