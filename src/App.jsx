@@ -225,6 +225,19 @@ return (
                   <div className="text-sm text-slate-500">Wind: {current ? `${current.wind?.speed ?? '--'} m/s` : '--'}</div>
                 </div>
               </div>
+<div className="mt-4 flex items-center gap-4">
+                {current && (
+                  <>
+                    <img src={`https://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`} alt="icon" />
+                    <div className="capitalize text-lg">{current.weather[0].description}</div>
+                  </>
+                )}
+                <div className="ml-auto flex items-center gap-3">
+                  <button onClick={handleAddTracked} className="px-3 py-2 rounded-md border">Add to tracked</button>
+                  <div className="text-sm text-slate-400">{loading ? 'Loading…' : ''}</div>
+                </div>
+              </div>
+            </div>
 
 
   
