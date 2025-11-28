@@ -252,6 +252,20 @@ return (
                 ))}
               </div>
             </div>
+ <div className="bg-white p-6 rounded-2xl shadow-sm">
+              <h3 className="text-2xl font-bold mb-4">Developer & Running Tips</h3>
+              <ul className="list-disc pl-5 space-y-2 text-sm text-slate-600">
+                <li>To provide a key in a browser sandbox, set <code>window.__OPENWEATHERMAP_KEY__</code> in your HTML.</li>
+                <li>You can also append <code>?apiKey=YOUR_KEY</code> to your URL.</li>
+                <li>If building locally with CRA/Vite, provide <code>REACT_APP_OPENWEATHERMAP_KEY</code>.</li>
+              </ul>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}
 
 
   
